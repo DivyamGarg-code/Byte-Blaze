@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { PermissionPopUp } from '../components/PopUp';
 const dummyData = {
     "2023-01-01": {
         // "R-1": {
@@ -37,7 +37,11 @@ const dummyData = {
 
 function TableComponent() {
     const handleSlotClick = (room, timeSlot, status) => {
-        console.log(room, timeSlot, status);
+        if(status==="free"){
+            console.log(room, timeSlot, status);
+            console.log("Open the Pop Up");
+            togglePopUp();
+        }
     };
 
     const getFormattedDate = (date) => {
@@ -51,7 +55,10 @@ function TableComponent() {
     const [selectedDate, setSelectedDate] = useState(getFormattedDate(new Date()));
     const [tableData, setTableData] = useState({});
     const [timeSlots, setTimeSlots] = useState([]);
-
+    const [popUpState,setPopUpState]=useState(false);
+    const togglePopUp=()=>{
+        setPopUpState(!popUpState);
+    }
     useEffect(() => {
         // Fetch or use the dummyData here
 
@@ -113,7 +120,8 @@ function TableComponent() {
                             {Object.keys(tableData).map((room) => (
                                 <td key={`${room}-${timeSlot}`} className="border px-4 py-2">
                                     <button
-                                        className={`font-bold py-2 px-4 rounded bg-blue-300`}
+                                        className={`${tableData[room][timeSlot] === 'booked'?'bg-red-500 cursor-not-allowed':tableData[room][timeSlot] === 'pending'?'bg-yellow-500 cursor-not-allowed':tableData[room][timeSlot] === 'free'?'bg-green-500':'bg-yellow-500 cursor-not-allowed'} 
+                                         text-white font-bold py-2 px-4 rounded`}
                                         onClick={() => {
                                             handleSlotClick(room, timeSlot, tableData[room][timeSlot]);
                                         }}
@@ -128,6 +136,7 @@ function TableComponent() {
                     ))}
                 </tbody>
             </table>
+            {popUpState?<PermissionPopUp togglePopUp={togglePopUp}/>:""}
         </div>
     );
 }
