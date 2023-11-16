@@ -79,7 +79,7 @@ function TableComponent() {
         const data = await fetch("http://localhost:3000/getroomdat/roomd");
         const json = await data.json();
         console.log(json);
-        // setTableData(json.resobj);
+        setTableData(json.resobj);
     }
     useEffect(() => {
         // Fetch or use the dummyData here
@@ -140,18 +140,16 @@ function TableComponent() {
                             <td className="border px-4 py-2">{timeSlot}</td>
                             {Object.keys(tableData).map((room) => (
                                 <td key={`${room}-${timeSlot}`} className="border px-4 py-2">
-                                    {/* {console.log(tableData[room][timeSlot])} */}
-                                    {/* <button
-                                        className={`${tableData[room][timeSlot] === 'booked' ? 'bg-red-500 cursor-not-allowed' : tableData[room][timeSlot] === 'pending' ? 'bg-yellow-500 cursor-not-allowed' : tableData[room][timeSlot] === 'free' ? 'bg-green-500' : 'bg-yellow-500 cursor-not-allowed'} 
+                                    {console.log(tableData[room][timeSlot].state)}
+                                    <button
+                                        className={`${tableData[room][timeSlot].state === 'booked' ? 'bg-red-500 cursor-not-allowed' : tableData[room][timeSlot].state === 'pending' ? 'bg-yellow-500 cursor-not-allowed' : tableData[room][timeSlot].state === 'free' ? 'bg-green-500' : 'bg-yellow-500 cursor-not-allowed'} 
                                          text-white font-bold py-2 px-4 rounded`}
                                         onClick={() => {
-                                            handleSlotClick(room, timeSlot, tableData[room][timeSlot]);
+                                            handleSlotClick(room, timeSlot, tableData[room][timeSlot].state);
                                         }}
                                     >
-                                        {tableData[room] && tableData[room][timeSlot]
-                                            ? tableData[room][timeSlot]
-                                            : 'Free Slot'}
-                                    </button> */}
+                                        {tableData[room][timeSlot].state}
+                                    </button>
                                 </td>
                             ))}
                         </tr>
