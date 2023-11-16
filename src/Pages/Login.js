@@ -144,19 +144,15 @@ const Login = () => {
 }
 
 export const UserLoginPage = () => {
-    const [activeState, setactiveState] = useState(null)
-<<<<<<< HEAD
-    useEffect(() => {
-        fetchData();
-    }, []);
-    const fetchData = async () => {
-        const data = await fetch("http://localhost:3000/user/login");
-        const json = await data.json();
-        console.log(json);
-    }
-=======
-
->>>>>>> c500a9cf599cdd7ad5578badfde617a10a192e16
+    const [activeState, setactiveState] = useState(null
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
+    // const fetchData = async () => {
+    //     const data = await fetch("http://localhost:3000/user/login");
+    //     const json = await data.json();
+    //     console.log(json);
+    // }
     return (
         <div className="wrapper">
             {activeState == null ? <div className='flex flex-row gap-4'>

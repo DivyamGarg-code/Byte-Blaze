@@ -5,19 +5,19 @@ const app = express();
 const cors = require('cors');
 
 // Enable CORS for a specific URL
-const corsOptions = {
-  origin: 'http://localhost:3001'
-};
+// const corsOptions = {
+//   origin: 'http://localhost:3001'
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 
 const cookieParser = require('cookie-parser');
 const expSession = require('express-session');
 
-const passport = require('passport');
-const passportLocal = require('./config/passport-local-strategy');
+// const passport = require('passport');
+// const passportLocal = require('./config/passport-local-strategy');
 
 
 const db = require('./config/mongoose');
@@ -41,9 +41,9 @@ app.use(expSession({
 	})
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(passport.setAuthenticatedUser);
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(passport.setAuthenticatedUser);
 app.use('/',require('./routes'));
 
 

@@ -3,8 +3,14 @@ const Room = require('../models/room');
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
-
-
+module.exports.debug = async function(req,res){
+	try{
+		console.log('hit');
+		return res.status(200).json({});
+	}catch(error){
+		console.log(error);
+	}
+}
 
 module.exports.createnewuser = async function(req,res){
 	try{
@@ -36,7 +42,7 @@ module.exports.createnewuser = async function(req,res){
 
 module.exports.createnewsession = async function(req,res){
 	console.log(req.body);
-	let userid = req.body.userid;
+	let userid = req.body.email;
 	let enc = req.user.name;
 	return res.status(200).json({
 		data: {
