@@ -5,11 +5,11 @@ const app = express();
 const cors = require('cors');
 
 // Enable CORS for a specific URL
-const corsOptions = {
-  origin: 'http://localhost:3001'
-};
+// const corsOptions = {
+//   origin: 'http://localhost:3001'
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 
