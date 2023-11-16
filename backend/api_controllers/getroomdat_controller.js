@@ -90,7 +90,7 @@ module.exports.getroomdat = async function(req,res){
 				resobj[date][name]= rooms[i].occupancy[date];
 			}	
 		}
-		console.log(resobj["17-11-2023"]);
+		// console.log(resobj["17-11-2023"]);
 		for(let i=0; i<rooms.length; i++){
 			await Room.findByIdAndUpdate(rooms[i].id, rooms[i]);
 

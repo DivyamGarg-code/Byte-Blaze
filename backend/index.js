@@ -2,9 +2,22 @@ const express = require('express');
 const port = 3000;
 const app = express();
 
+const cors = require('cors');
+
+// Enable CORS for a specific URL
+const corsOptions = {
+  origin: 'http://localhost:3001'
+};
+
+app.use(cors(corsOptions));
+
+
 
 const cookieParser = require('cookie-parser');
 const expSession = require('express-session');
+
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
 
 
 const db = require('./config/mongoose');
@@ -13,7 +26,6 @@ const mongostorre = require('connect-mongo');
 
 app.use(express.urlencoded({ extended: true }));
 
-const passport = require('passport');
 
 app.use(expSession({
 	name:'blaze',
@@ -29,9 +41,9 @@ app.use(expSession({
 	})
 }));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(passport.setAuthenticatedUser);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 app.use('/',require('./routes'));
 
 
@@ -39,19 +51,5 @@ app.listen(port, function(err){
 	if(err){
 		console.error(err);
 	}
-	const date = new Date();
-	let day = date.getDate();
-	let month = date.getMonth() + 1;
-	let year = date.getFullYear();
-	// console.log(getDate("23-11-2023"));
-	// This arrangement can be altered based on how we want the date's format to appear.
-	// let currentDate = `${day}-${month}-${year}`;
-	console.log(date);
-	let tomorrow = new Date(date);
-	tomorrow.setDate(date.getDate() + 1);
-
-	console.log(tomorrow);
-	console.log(date+1);
-	// console.log(currentDate);
 	console.log('server is running on port: ',port);
 });
