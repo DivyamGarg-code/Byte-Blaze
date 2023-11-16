@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
@@ -22,6 +22,7 @@ const SignUp = () => {
         e.preventDefault();
         // Handle form submission, e.g., send data to the server or perform validation
         console.log(userInfo);
+        window.location.href = "/home";
     };
 
     return (
@@ -93,6 +94,7 @@ const Login = () => {
         e.preventDefault();
         // Handle form submission, e.g., send data to the server or perform validation
         console.log(userInfo);
+        window.location.href = "/home";
     };
 
     return (
@@ -119,6 +121,14 @@ const Login = () => {
 
 export const UserLoginPage = () => {
     const [activeState, setactiveState] = useState(null)
+    useEffect(() => {
+        fetchData();
+    }, []);
+    const fetchData = async () => {
+        const data = await fetch("https://restcountries.com/v2/all");
+        const json = await data.json();
+        console.log(json);
+    }
     return (
         <div className="wrapper">
             {activeState == null ? <div className='flex flex-row gap-4'>
