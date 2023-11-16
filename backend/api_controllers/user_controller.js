@@ -14,6 +14,9 @@ module.exports.debug = async function(req,res){
 
 module.exports.createnewuser = async function(req,res){
 	try{
+		if(!req.body){
+			return res.status(400).json({});
+		}
 		if(req.body.password != req.body.confirmpassword){
 			return res.status(211).json({
 				message: "confirm password and password are not same"
