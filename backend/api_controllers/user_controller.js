@@ -9,14 +9,21 @@ module.exports.debug = async function(req,res){
 		return res.status(200).json({});
 	}catch(error){
 		console.log(error);
+
+module.exports.debug = async function(req,res){
+	try{
+		console.log('debug');
+	}catch(err){
+		console.log(err);
 	}
 }
 
 module.exports.createnewuser = async function(req,res){
 	try{
 		if(!req.body){
-			return res.status(400).json({});
+			return res.status(200).json({});
 		}
+		console.log(req.body);
 		if(req.body.password != req.body.confirmpassword){
 			return res.status(211).json({
 				message: "confirm password and password are not same"
@@ -37,34 +44,34 @@ module.exports.createnewuser = async function(req,res){
 				message: "user already exists"
 			});
 		}
+		return res.status(230).json({});
 	}catch(error){
 		console.error(error);
 	}
 }
 
 
-module.exports.createnewsession = async function(req,res){
-	console.log(req.body);
-	let userid = req.body.email;
-	let enc = req.user.name;
-	return res.status(200).json({
-		data: {
-			name: enc
-		},
-		message: " login successful "
-	})
-}
+// module.exports.createnewsession = async function(req,res){
+// 	console.log(req.body);
+// 	let userid = req.body.email;
+// 	let enc = req.user.name;
+// 	return res.status(200).json({
+// 		data: {
+// 			name: enc
+// 		},
+// 		message: " login successful "
+// 	})
+// }
 
-module.exports.destroysession = async function(req,res){
-	req.logout(function(err){
-		if(err){
-			console.log(err);
-		}
-		else{
-			return res.status(210).json({
-				message:"logout succesful"
-			});
-		}
-	});
-}
-
+// module.exports.destroysession = async function(req,res){
+// 	req.logout(function(err){
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		else{
+// 			return res.status(210).json({
+// 				message:"logout succesful"
+// 			});
+// 		}
+// 	});
+// }

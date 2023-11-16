@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user1', // Default role
+        "name": "",
+        "email": "",
+        "password": "",
+        "confirmPassword": "",
+        "role": "user1", // Default role
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name);
+        // console.log(name);
         setUserInfo((prevUserInfo) => ({
             ...prevUserInfo,
             [name]: value,
@@ -27,6 +27,7 @@ const SignUp = () => {
             const fetchData = async () => {
                 const url = "http://localhost:3000/user/signup";
                 try {
+                    console.log(JSON.stringify(userInfo));
                     const data = await fetch(url, {
                         method: "POST",
                         headers: {
@@ -36,7 +37,7 @@ const SignUp = () => {
                     });
     
                     const json = await data.json();
-                    console.log(json);
+                    console.log("Date get ",json);
                 } catch (error) {
                     console.error("Error:", error);
                 }
@@ -45,7 +46,7 @@ const SignUp = () => {
             fetchData();
         }
 
-        console.log(userInfo);
+        // console.log(userInfo);
         // window.location.href = "/home";
     };
 
@@ -153,6 +154,7 @@ export const UserLoginPage = () => {
     //     const json = await data.json();
     //     console.log(json);
     // }
+    const [activeState, setactiveState] = useState(null)
     return (
         <div className="wrapper">
             {activeState == null ? <div className='flex flex-row gap-4'>

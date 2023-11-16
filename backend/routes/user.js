@@ -14,6 +14,13 @@ router.post('/signup', user_controller.createnewuser);
 // 	user_controller.createnewsession
 // );
 
+// router.post('/login',passport.authenticate(
+// 	'local',
+// 	{failureRedirect: '/'},
+// 	),
+// 	user_controller.createnewsession
+// );
+
 // router.post('/dessess', user_controller.destroysession);
 
 
