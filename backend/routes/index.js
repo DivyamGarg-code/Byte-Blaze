@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require('passport');
 
 
-console.log("router is working");
 
 // const homeController = require('../controllers/homecontroller');
 
@@ -24,5 +23,6 @@ router.use('/getroomdat',require('./getroomdat'));
 
 // router.use('/get_apis', require('./get_apis'));
 
+console.log("router is working");
 
 module.exports = router;

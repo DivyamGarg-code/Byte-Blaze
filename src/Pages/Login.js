@@ -125,7 +125,7 @@ export const UserLoginPage = () => {
         fetchData();
     }, []);
     const fetchData = async () => {
-        const data = await fetch("https://restcountries.com/v2/all");
+        const data = await fetch("https://localhost:3000/getroomdat");
         const json = await data.json();
         console.log(json);
     }
