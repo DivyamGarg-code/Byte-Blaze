@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import Error from './Pages/Error';
 import Home from './Pages/Home';
+import Notifications from './Pages/Notifications';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const appRouter = createBrowserRouter([
@@ -16,6 +17,11 @@ const appRouter = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/notifications",
+    element: <Notifications />,
     errorElement: <Error />,
   }
 ])

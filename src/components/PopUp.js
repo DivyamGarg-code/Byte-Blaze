@@ -1,15 +1,6 @@
 import React, { useState } from 'react'
 
-export const PermissionPopUp = ({togglePopUp}) => {
-    const [userInfo, setUserInfo] = useState({
-        title: '',
-        description: '',
-        club: '',
-        request_by: '',
-        sid: '',
-        mobile: ''
-    });
-
+export const PermissionPopUp = ({userInfo,setUserInfo,togglePopUp}) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         // console.log(name);

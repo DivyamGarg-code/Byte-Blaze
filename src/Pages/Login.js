@@ -20,9 +20,33 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission, e.g., send data to the server or perform validation
+        if(userInfo.password!==userInfo.confirmPassword){
+            alert("Please fill the correct password");
+        }else{
+            // Handle form submission, e.g., send data to the server or perform validation
+            const fetchData = async () => {
+                const url = "http://localhost:3000/user/signup";
+                try {
+                    const data = await fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json", // Specify the content type as JSON
+                        },
+                        body: JSON.stringify(userInfo), // Convert the dummy object to JSON string
+                    });
+    
+                    const json = await data.json();
+                    console.log(json);
+                } catch (error) {
+                    console.error("Error:", error);
+                }
+            };
+    
+            fetchData();
+        }
+
         console.log(userInfo);
-        window.location.href = "/home";
+        // window.location.href = "/home";
     };
 
     return (
@@ -121,6 +145,7 @@ const Login = () => {
 
 export const UserLoginPage = () => {
     const [activeState, setactiveState] = useState(null)
+<<<<<<< HEAD
     useEffect(() => {
         fetchData();
     }, []);
@@ -129,6 +154,9 @@ export const UserLoginPage = () => {
         const json = await data.json();
         console.log(json);
     }
+=======
+
+>>>>>>> c500a9cf599cdd7ad5578badfde617a10a192e16
     return (
         <div className="wrapper">
             {activeState == null ? <div className='flex flex-row gap-4'>
