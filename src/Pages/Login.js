@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 const SignUp = () => {
     const [userInfo, setUserInfo] = useState({
         "name": "",
@@ -20,29 +21,32 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(userInfo.password!==userInfo.confirmPassword){
+        if (userInfo.password !== userInfo.confirmPassword) {
             alert("Please fill the correct password");
-        }else{
+        } else {
             // Handle form submission, e.g., send data to the server or perform validation
             const fetchData = async () => {
                 const url = "http://localhost:3000/user/signup";
                 try {
-                    console.log(JSON.stringify(userInfo));
                     const data = await fetch(url, {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json", // Specify the content type as JSON
+                            "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(userInfo), // Convert the dummy object to JSON string
+                        body: JSON.stringify(userInfo),
                     });
-    
+
+                    if (!data.ok) {
+                        throw new Error(`HTTP error! Status: ${data.status}`);
+                    }
+
                     const json = await data.json();
-                    console.log("Date get ",json);
+                    console.log("Data received:", json);
                 } catch (error) {
                     console.error("Error:", error);
                 }
             };
-    
+
             fetchData();
         }
 
